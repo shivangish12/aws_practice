@@ -1,4 +1,5 @@
 IAM users, Root Users
+Groups only contain users, not other groups
 Components of a request
 When a principal tries to use the AWS Management Console, the AWS API, or the AWS CLI, that principal sends a request to AWS. The request includes the following information:
 Actions or operations – The actions or operations that the principal wants to perform., such as an action in the AWS Management Console, or an operation in the AWS CLI or AWS API.

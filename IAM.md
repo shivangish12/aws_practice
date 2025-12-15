@@ -1,5 +1,6 @@
 IAM users, Root Users
 Groups only contain users, not other groups
+
 Components of a request
 When a principal tries to use the AWS Management Console, the AWS API, or the AWS CLI, that principal sends a request to AWS. The request includes the following information:
 Actions or operations – The actions or operations that the principal wants to perform., such as an action in the AWS Management Console, or an operation in the AWS CLI or AWS API.
@@ -24,6 +25,10 @@ IAM role
 Policy>Group>Entity>Principle
 
 Policies and Permissions-
+
+• Users or Groups can be assigned JSON documents called policies
+• These policies define the permissions of the users
+• In AWS you apply the least privilege principle
 Trust policy – Defines which principal can assume the role, and under which conditions. A trust policy is a specific type of resource-based policy for IAM roles. A role can have only one trust policy.
 Identity-based policies (inline and managed) – These policies define the permissions that the user of the role is able to perform (or is denied from performing), and on which resources.
 

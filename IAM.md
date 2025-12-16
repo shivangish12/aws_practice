@@ -166,3 +166,10 @@ Requires:
 - Root user should never be used
 
 Trust policy controls role assumption
+
+
+
+
+Secure Room:
+Who can enter the room- Trust policy 
+What can be done inside the room - Permission Policy

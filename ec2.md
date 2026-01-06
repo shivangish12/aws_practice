@@ -383,3 +383,184 @@ Public IP changes on stop/start
 EC2 is region-scoped
 
 ASG ≠ EC2 Fleet
+
+
+1️⃣ What is an Elastic IP?
+
+Static public IPv4 address
+
+Allocated to AWS account, not instance
+
+Remains until explicitly released
+
+Used to mask instance failure by fast remapping
+
+📌 Elastic IP = Fixed public IP for dynamic cloud resources
+
+2️⃣ Why Elastic IP Exists
+
+Without EIP:
+
+Public IP changes on stop/start
+
+DNS breaks
+
+With EIP:
+
+IP never changes
+
+Reassociate to another EC2 in seconds
+
+No DNS propagation delay
+
+3️⃣ Core Properties (Must Memorize)
+Property	Value
+IP type	Public IPv4 only
+Static	Yes
+Region-scoped	Yes
+IPv6 support	❌ No
+Auto released	❌ No
+Internet reachable	Yes
+4️⃣ Lifecycle of an Elastic IP
+Allocate → Associate → Disassociate → Reassociate → Release
+
+
+⚠️ You are billed until Release
+
+5️⃣ Association Rules (Exam Favorite)
+
+Can associate with:
+
+EC2 instance
+
+Network Interface (ENI)
+
+Always attaches to primary ENI
+
+Reassociation:
+
+Automatically removes old association
+
+Existing public IPv4:
+
+Released permanently
+
+❌ Cannot be converted to EIP
+
+6️⃣ Elastic IP vs Public IPv4
+Feature	Public IPv4	Elastic IP
+Static	❌	✅
+Stop/Start change	Yes	No
+Remappable	❌	✅
+Charged	Yes	Yes
+7️⃣ Pricing ⚠️ (Very Important)
+
+Charged whether used or idle
+
+Charged for all public IPv4 addresses
+
+Disassociated EIP = still billed
+
+📌 AWS discourages overuse due to IPv4 scarcity.
+
+8️⃣ Quota (Limits)
+
+Default: 5 Elastic IPs per Region
+
+Increase via Service Quotas
+
+BYOIP EIPs don’t count toward quota
+
+9️⃣ DNS Behavior
+
+Public DNS updates to match EIP
+
+Resolution:
+
+Outside VPC → Public IP
+
+Inside VPC → Private IP
+
+🔁 10️⃣ Reassociation & Failover Pattern
+Instance A fails
+↓
+EIP reassociated
+↓
+Instance B active
+
+
+✔️ Zero DNS change
+✔️ Minimal downtime
+
+1️⃣1️⃣ Elastic IP Transfer (Between Accounts)
+
+Ownership transfer (not sharing)
+
+Same Region only
+
+2-step handshake:
+
+Source enables
+
+Target accepts (within 7 days)
+
+❌ BYOIP / IPAM pool EIPs cannot be transferred
+❌ Tags are removed after transfer
+
+📧 1️⃣2️⃣ Reverse DNS (PTR) for Email
+
+Required for sending email from EC2
+
+Reduces spam flagging
+
+Requirements:
+
+Forward DNS (A record) must exist
+
+PTR locks Elastic IP:
+
+Cannot release until PTR removed
+
+CLI:
+
+modify-address-attribute
+reset-address-attribute
+
+🌐 1️⃣3️⃣ Elastic IP & IPAM
+
+IPAM:
+
+Governs and tracks IPs
+
+Allocates EIPs from pools
+
+IPAM ❌ does NOT transfer EIPs
+
+IPAM pools shared via AWS RAM
+
+1️⃣4️⃣ When to Use Elastic IP
+
+✅ Bastion hosts
+✅ Legacy apps needing fixed IP
+✅ Email servers
+✅ Whitelisted client access
+
+❌ 1️⃣5️⃣ When NOT to Use Elastic IP
+
+❌ Auto Scaling Groups
+❌ Load-balanced apps
+❌ Microservices
+❌ Containers
+
+👉 Use ALB + Route 53 instead
+
+1️⃣6️⃣ Common Exam Traps ⚠️
+
+❌ “Elastic IP is free when unused” → False
+❌ “Elastic IP works across regions” → False
+❌ “Elastic IP supports IPv6” → False
+✅ “Elastic IP is static public IPv4” → True
+
+1️⃣7️⃣ One-Line Exam Summary
+
+Elastic IP is a static, region-scoped public IPv4 address that you control and can remap, but you pay for it until you release it.

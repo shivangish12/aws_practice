@@ -1,3 +1,4 @@
+
 1. What is Amazon EC2?
 
 Amazon EC2 (Elastic Compute Cloud) provides resizable virtual servers (instances) in the cloud.
@@ -564,3 +565,343 @@ IPAM pools shared via AWS RAM
 1️⃣7️⃣ One-Line Exam Summary
 
 Elastic IP is a static, region-scoped public IPv4 address that you control and can remap, but you pay for it until you release it.
+
+
+Amazon VPC (Virtual Private Cloud)
+What is a VPC?
+
+A VPC is a logically isolated virtual network inside AWS.
+
+It closely resembles a traditional on-premise data center network.
+
+You control:
+
+IP address ranges
+
+Subnets
+
+Routing
+
+Internet access
+
+Security
+
+📌 All EC2 networking happens inside a VPC.
+
+VPC CIDR
+
+Defined at VPC creation
+
+Example:
+
+10.0.0.0/16
+
+
+All subnets and ENIs draw IPs from this range.
+
+Subnets
+
+A subnet is a smaller IP range inside a VPC
+
+Each subnet belongs to exactly one Availability Zone
+
+Used for:
+
+High availability
+
+Security separation
+
+Traffic control
+
+Public vs Private Subnets
+Type	Internet Access
+Public	Route to Internet Gateway
+Private	No direct internet route
+Default VPC
+
+AWS automatically creates:
+
+One default VPC per region
+
+One subnet per AZ
+
+Internet Gateway attached
+
+Route:
+
+0.0.0.0/0 → IGW
+
+
+Public IP auto-assignment enabled
+
+📌 Default VPC = ready-to-use, beginner friendly
+
+Non-default (Custom) VPC
+
+Used in production for:
+
+Private subnets
+
+NAT gateways
+
+Strict security
+
+Controlled routing
+
+Best practices:
+
+Create subnets in multiple AZs
+
+Separate public and private workloads
+
+Internet Access Options
+Scenario	Solution
+Public EC2	Internet Gateway
+Private EC2	NAT Gateway
+On-prem connectivity	VPN / Direct Connect
+Shared Subnets
+
+One AWS account owns the VPC
+
+Other accounts can launch EC2 into shared subnets
+
+Each account:
+
+Manages its own EC2 & ENIs
+
+Cannot manage others’ instances
+
+IPv6-only Subnets
+
+No IPv4 address assigned
+
+Only IPv6
+
+Requires Nitro-based EC2
+
+Used for large-scale modern networking
+
+2️⃣ Elastic Network Interfaces (ENI)
+What is an ENI?
+
+An ENI is a virtual network card in a VPC.
+
+It represents the network identity of an EC2 instance.
+
+Key ENI Attributes
+
+An ENI can have:
+
+Primary private IPv4 address
+
+Secondary private IPv4 addresses
+
+IPv6 addresses
+
+Elastic IP (one per private IPv4)
+
+Security groups
+
+MAC address
+
+Source/Destination check
+
+Description
+
+📌 IPs and security groups belong to the ENI, not the EC2.
+
+Primary vs Secondary ENI
+Primary ENI
+
+Created automatically at EC2 launch
+
+Cannot be detached
+
+One per EC2
+
+Secondary ENI
+
+Optional
+
+Can be attached/detached
+
+Can move between EC2s (same AZ)
+
+ENI Scope Rules (VERY IMPORTANT)
+
+ENI is tied to:
+
+Subnet
+
+Availability Zone
+
+ENI cannot move across AZs
+
+ENI can attach only to EC2 in the same AZ
+
+IP Addressing Rules
+Private IPv4
+
+Primary private IP → fixed
+
+Secondary IPs → movable
+
+Public IPv4
+
+Assigned based on subnet setting
+
+Released when EC2 stops
+
+Reassigned on restart
+
+Elastic IP
+
+Static public IPv4
+
+Region-scoped
+
+Attached to private IP on ENI
+
+Source/Destination Check
+
+Enabled by default
+
+Must be disabled for:
+
+NAT instance
+
+Firewall
+
+Router
+
+ENI Termination Behavior
+
+ENI can be:
+
+Deleted with EC2
+
+Preserved after EC2 termination
+
+Managed & Requester-Managed ENIs
+
+Created by AWS services (ELB, Lambda, NAT Gateway)
+
+Cannot be modified or detached manually
+
+3️⃣ Attaching & Detaching ENIs
+When can ENIs be attached?
+AWS Term	Meaning
+Cold attach	During launch
+Warm attach	EC2 stopped
+Hot attach	EC2 running
+Detachment Rules
+
+Secondary ENIs → detachable
+
+Primary ENI → never detachable
+
+Multi-homed EC2
+
+EC2 with multiple ENIs
+
+Used for:
+
+Traffic separation
+
+Multi-VPC access
+
+Firewalls / NAT
+
+⚠️ More ENIs ≠ more bandwidth
+
+Public IP Behavior with Multiple ENIs
+
+If EC2 has >1 ENI:
+
+AWS will NOT auto-assign public IP
+
+Use Elastic IP instead
+
+4️⃣ Prefix Delegation (Advanced ENI Feature)
+What is Prefix Delegation?
+
+Assigning a CIDR block (IP range) to an ENI instead of individual IPs.
+
+Used mainly for:
+
+Containers
+
+Kubernetes / EKS
+
+High-density workloads
+
+Prefix Sizes
+Type	Prefix
+IPv4	/28 (16 IPs)
+IPv6	/80
+Why Prefix Delegation?
+
+Without prefix:
+
+Each container requests IP from EC2 API
+
+With prefix:
+
+ENI already owns a pool of IPs
+
+Containers assign IPs locally
+
+Faster scaling
+
+Where Prefix Lives
+Subnet
+  ↓
+ENI  ← Prefix (/28 or /80)
+  ↓
+EC2
+  ↓
+Containers
+
+Automatic vs Manual Prefix Assignment
+
+Automatic: AWS chooses free prefix
+
+Manual: You specify CIDR (no overlap allowed)
+
+ENI Limits with Prefixes
+
+Each prefix counts as 1 IP toward ENI limit
+
+Example:
+
+ENI allows 10 IPs
+
+1 primary IP used
+
+9 prefixes allowed
+
+9 × 16 = 144 usable IPs
+
+Managing Prefixes
+
+You can:
+
+Assign prefixes during ENI creation
+
+Add prefixes later
+
+Remove prefixes
+
+⚠️ Removing a prefix:
+
+Removes all IPs in that range
+
+Breaks apps using them
+
+Elastic IP with Prefixes
+
+Elastic IP can be:
+
+Attached to ENI
+
+Attached to an IP inside the prefix

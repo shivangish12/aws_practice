@@ -1244,3 +1244,14 @@ File Cache = speed layer
 
 
 /etc/fstab for auto mounting
+
+AWS has two layers of network security:
+
+Subnet-level security  → NACL
+Instance-level security → Security Group
+Think:
+NACL = gate at society entrance
+Security Group = lock on your house door
+SG = Stateful & Simple
+NACL = Network-level & Needs both directions
+

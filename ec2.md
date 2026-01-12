@@ -1240,3 +1240,7 @@ S3 = object storage
 EFS = shared file system
 FSx = enterprise file system
 File Cache = speed layer
+
+
+
+/etc/fstab for auto mounting

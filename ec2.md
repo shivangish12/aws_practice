@@ -905,3 +905,338 @@ Elastic IP can be:
 Attached to ENI
 
 Attached to an IP inside the prefix
+
+
+
+
+
+
+1️⃣ BLOCK STORAGE (Disk-like storage)
+🔹 Amazon EBS (Elastic Block Store)
+
+Amazon Elastic Block Store
+
+What it is
+
+Persistent block storage for EC2
+
+Works like an external hard disk
+
+Network-attached
+
+Key points
+
+Data persists across:
+
+Reboot ✅
+
+Stop ✅
+
+Data can be:
+
+Detached
+
+Reattached to another instance
+
+Backed up using snapshots
+
+Used for:
+
+OS
+
+Databases
+
+Application data
+
+EBS Volume Limits
+
+Depends on instance type & size
+
+Most Nitro instances:
+
+28 total attachments
+= EBS volumes + ENIs + NVMe disks
+
+
+Some newer instances have dedicated EBS limits (no subtraction)
+
+Exceed limit → AttachmentLimitExceeded
+
+🔹 Root Volumes
+
+Root volume = disk that contains the OS
+
+Usually an EBS volume
+
+Deleted on termination ❌ (default)
+
+Options
+
+Keep root volume after termination ✅
+
+Replace root volume
+
+Modify via block device mapping
+
+2️⃣ INSTANCE STORE (Temporary Storage)
+🔹 EC2 Instance Store
+
+Amazon EC2 Instance Store
+
+What it is
+
+Temporary block storage
+
+Physically attached to EC2 host
+
+Very fast
+
+Free (included in EC2 cost)
+
+What you must remember
+
+Data does NOT persist
+
+Cannot be:
+
+Detached
+
+Reattached
+
+Snapshotted
+
+Must be added at launch only
+
+Use cases
+
+Cache
+
+Buffers
+
+Scratch data
+
+Temporary replicated data
+
+🔹 Instance Store Data Persistence (IMPORTANT)
+Golden Rule 🧠
+Reboot → Data stays
+Stop / Hibernate / Terminate → Data LOST
+
+Why data is lost?
+
+Data is cryptographically erased
+
+Encryption keys destroyed
+
+If data matters → copy to:
+
+Amazon EBS
+
+Amazon S3
+
+Amazon EFS
+
+3️⃣ SSD INSTANCE STORE VOLUMES
+Types
+
+NVMe SSD (modern)
+
+Non-NVMe SSD (older: C3, I2, M3, R3, X1)
+
+NVMe SSD facts
+
+Extremely fast
+
+Always hardware-encrypted
+
+Encryption:
+
+Automatic
+
+Keys destroyed on stop/terminate
+
+You:
+
+❌ cannot disable encryption
+
+❌ cannot bring your own key
+
+SSD Performance Behavior
+
+⚠️ As SSD fills up → performance decreases
+
+Reason:
+
+SSD must do internal cleanup (write amplification)
+
+Best Practices
+
+Leave ~10% disk unpartitioned
+
+Use TRIM to tell SSD which data is no longer needed
+
+4️⃣ INSTANCE STORE VOLUME MANAGEMENT
+Add Instance Store Volumes
+
+Can only be added:
+
+At instance launch
+
+Via AMI
+
+Cannot be attached later
+
+After launch
+
+You must:
+
+Initialize
+
+Format
+
+Mount
+
+Make available for use
+
+Swap Volumes (Old Instances)
+
+Used in M1, C1 families
+
+Instance store used as swap memory
+
+Rare today (mostly historical)
+
+5️⃣ BLOCK DEVICE MAPPINGS
+What it means
+
+How disks are attached and named inside the OS
+
+You can define mappings:
+
+While creating an AMI
+
+While launching an instance
+
+Includes:
+
+Root volume
+
+EBS volumes
+
+Instance store volumes
+
+Device Names
+
+Linux: /dev/xvda, /dev/nvme0n1
+
+Windows: Disk 0, Disk 1, etc.
+
+NVMe Mapping
+
+NVMe disks don’t show classic names
+
+Must map:
+
+NVMe device → EBS Volume ID
+
+6️⃣ ADVANCED STORAGE CONCEPTS
+Torn Write Prevention
+
+Prevents partial writes during failure
+
+Important for databases
+
+Supported Block Sizes
+
+Some workloads require aligned I/O sizes
+
+Check Instance Support
+
+Not all instances support:
+
+Instance store
+
+NVMe
+
+High IOPS
+
+Always check instance specs.
+
+7️⃣ STORAGE BEYOND EC2
+🔹 Amazon S3 (Object Storage)
+
+Amazon S3
+
+Object-based storage
+
+Extremely durable
+
+Cheap
+
+Not mounted like a disk
+
+Used for:
+
+Backups
+
+Images
+
+Logs
+
+Data lakes
+
+🔹 Amazon EFS (File Storage)
+
+Amazon EFS
+
+Shared file system
+
+Mountable on multiple EC2s
+
+POSIX-compliant
+
+Used for:
+
+Shared app data
+
+CMS
+
+Multi-instance apps
+
+🔹 Amazon FSx (High-performance File Systems)
+
+Amazon FSx
+
+Enterprise-grade file systems
+
+Windows, Lustre, NetApp
+
+Used for:
+
+Windows workloads
+
+HPC
+
+Enterprise apps
+
+🔹 Amazon File Cache
+
+Amazon File Cache
+
+Cache layer in front of S3
+
+Low latency
+
+High throughput
+
+🧠 ONE-PAGE CHEAT SHEET
+EBS = persistent disk
+Instance Store = fast but temporary
+Root volume = OS disk
+Reboot ≠ Stop
+NVMe = encrypted by default
+Block mapping = disk wiring
+S3 = object storage
+EFS = shared file system
+FSx = enterprise file system
+File Cache = speed layer

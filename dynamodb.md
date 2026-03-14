@@ -424,3 +424,11 @@ AWS DMS
 AWS Glue
 Amazon EMR
 Custom ETL scripts
+
+
+
+## standard vs standard IA class
+DynamoDB Standard: Best when throughput (reads/writes) is the main cost. It has lower throughput costs.
+DynamoDB Standard-IA: Best when storage is the main cost. It has lower storage costs.
+If storage cost becomes more than ~50% of throughput cost, switching to Standard-IA can reduce total cost.
+Both table classes provide the same performance, durability, and availability.

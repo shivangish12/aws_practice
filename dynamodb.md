@@ -433,7 +433,7 @@ DynamoDB Standard-IA: Best when storage is the main cost. It has lower storage c
 If storage cost becomes more than ~50% of throughput cost, switching to Standard-IA can reduce total cost.
 Both table classes provide the same performance, durability, and availability.
 
-# Global tables
+## Global tables
 -consistency modes cannot be changed after creation. multi-Region eventual consistency (MREC)(default) and multi-Region strong consistency (MRSC)
 -MRSC does not support TTL, transactions
 | Feature      | MREC      | MRSC          |

@@ -444,6 +444,42 @@ Both table classes provide the same performance, durability, and availability.
 | Transactions | Supported | Not supported |
 | TTL          | Supported | Not supported |
 
+## query vs scan
 
+### Query Operation
+A Query retrieves data from a specific partition key. Example condition:
+part_k = "A"
+timestamp > current_time - 180 days
+
+DynamoDB directly goes to the partition containing part_k = A.
+Only that partition is searched.
+This is very fast and efficient.
+If there are 10 partition key values, we could run:
+10 parallel query operations
+each querying a specific part_k.
+
+Example: 10 machine nodes or 10 Docker containers
+Each worker queries:
+part_k = X
+timestamp > current_time - 180 days
+Because queries target specific partitions, DynamoDB retrieves data quickly without scanning the entire table.
+
+### Scan Operation
+A Scan reads every item in the table.
+Example: timestamp > current_time - 180 days
+DynamoDB must look at every item first and then apply the filter.
+Even if only 1% of data matches, the entire table is scanned.
+
+### Parallel Scan
+To speed up scanning, we can use parallel workers.
+Example:
+10 machine nodes
+10 Docker containers
+Each worker scans a segment of the table.
+Execution flow:
+Request is sent to all workers.
+Each worker scans its segment.
+The system waits until all workers finish.
+This creates resolution delay because the final result depends on the slowest worker.
 
 

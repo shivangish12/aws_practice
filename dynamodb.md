@@ -483,3 +483,31 @@ The system waits until all workers finish.
 This creates resolution delay because the final result depends on the slowest worker.
 
 
+### UpdateItem actually performs an upsert, meaning that it automatically creates the item if it doesn't already exist.
+
+### Return Values
+| ReturnValues | Meaning                               |
+| ------------ | ------------------------------------- |
+| NONE         | Default, returns nothing              |
+| ALL_OLD      | Item before modification              |
+| ALL_NEW      | Item after modification               |
+| UPDATED_OLD  | Only changed attributes before update |
+| UPDATED_NEW  | Only changed attributes after update  |
+
+### Expression Types
+| Expression Type              | Description                                                                                                             |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **Projection Expression**    | Specifies which attributes to return when reading data using **GetItem, Query, or Scan**.                               |
+| **Condition Expression**     | Defines conditions that must be true for **PutItem, UpdateItem, or DeleteItem** to succeed.                             |
+| **Update Expression**        | Specifies how attributes should be modified in an **UpdateItem** operation (e.g., set, add, remove attributes).         |
+| **Key Condition Expression** | Used in **Query** to specify the **partition key and optional sort key conditions** that determine which items to read. |
+| **Filter Expression**        | Filters results **after a Query or Scan**, returning only items that match the condition while discarding the rest.     |
+
+### Update expression
+update-expression ::=
+    [ SET action [, action] ... ]
+    [ REMOVE action [, action] ...]
+    [ ADD action [, action] ... ]
+    [ DELETE action [, action] ...]
+
+

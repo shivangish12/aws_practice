@@ -1,9 +1,9 @@
 Server is composed of:
--CPU
--RAM
--Storage
--Database
--Network
+- CPU
+- RAM
+- Storage
+- Database
+- Network
 
 
 Advantages of cloud computing:

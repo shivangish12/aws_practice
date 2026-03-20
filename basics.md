@@ -77,9 +77,23 @@ EFS-IA
 • Gateway Load Balancer – Layer 3
 • Classic Load Balancer (retired in 2023) – Layer 4 & 7
 
-#S3
+# S3
+- buckets (globally unique name (across all regions all accounts)), objects
+- buckets are defined at region level
+- Objects have a key
+- keys=prefix+object name
+- max object size is 5 TB
+- S3 Storage Classes
+    - Amazon S3 Standard - General Purpose
+    - Amazon S3 Standard-Infrequent Access (IA)
+    - Amazon S3 One Zone-Infrequent Access
+    - Amazon S3 Glacier Instant Retrieval - minimum storage duration of 90 days, Millisecond retrieval, great for data accessed once a quarter
+    - Amazon S3 Glacier Flexible Retrieval - Expedited (1 to 5 minutes), Standard (3 to 5 hours), Bulk (5 to 12 hours) – free. Minimum storage duration of 90 days
+    - Amazon S3 Glacier Deep Archive -  Standard (12 hours), Bulk (48 hours). Minimum storage duration of 180 days
+    - Amazon S3 Intelligent Tiering - Moves objects automatically between Access Tiers based on usage
 
-
+   S3 Express One Zone -  Objects stored in a Directory Bucket (bucket in a single AZ). Handle 100,000s requests per second with single-digit millisecond latency.
+  AWS storage gateway- Hybrid storage service to allow on- premises to seamlessly use the AWS Cloud 
 
 
 

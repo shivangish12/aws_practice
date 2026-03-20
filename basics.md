@@ -93,7 +93,23 @@ EFS-IA
     - Amazon S3 Intelligent Tiering - Moves objects automatically between Access Tiers based on usage
 
    S3 Express One Zone -  Objects stored in a Directory Bucket (bucket in a single AZ). Handle 100,000s requests per second with single-digit millisecond latency.
-  AWS storage gateway- Hybrid storage service to allow on- premises to seamlessly use the AWS Cloud 
+  AWS storage gateway- Hybrid storage service to allow on- premises to seamlessly use the AWS Cloud
+
+# Databases
+  ## RDS
+  We can’t SSH into instances.
+  ## Aurora
+  - AWS cloud optimised.
+## RDS Deployments
+- Read Replicas:
+• Scale the read workload of your DB
+• Can create up to 15 Read Replicas
+• Data is only written to the main DB
+## Elasticache
+ElastiCache is to get managed Redis or Memcached
+
+## DynamoDB
+DAX: Fully managed in-memory cache for DynamoDB
 
 
 

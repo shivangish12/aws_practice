@@ -110,7 +110,54 @@ ElastiCache is to get managed Redis or Memcached
 
 ## DynamoDB
 DAX: Fully managed in-memory cache for DynamoDB
+DAX is only used for and is integrated with DynamoDB, while ElastiCache can be used for other databases
 
+## Redshift
+- not OLTP but OLAP
+- based on PostgreSQL
+- Load data once every hour, not every second
+- Columnar storage of data (instead of row based)
+- Massively Parallel Query Execution (MPP), highly available
+## Amazon EMR
+Elastic MapReduce
+- helps creating Hadoop clusters (Big Data) to analyze and process vast amount of data
+- The clusters can be made of hundreds of EC2 instances
+## Amazon Athena
+- Serverless query service to analyze data stored in Amazon S3
+## Amazon Quicksight
+- Serverless machine learning-powered business intelligence service to create interactive dashboards
+## DocumentDB
+- Aurora is an “AWS-implementation” of PostgreSQL / MySQL …
+- DocumentDB is the same for MongoDB (which is a NoSQL database)
+## Amazon Neptune
+Fully managed graph database
+## Amazon Timestream
+Fully managed, fast, scalable, serverless time series database
+1000s times faster & 1/10th the cost of relational databases
+## Amazon Managed Blockchain
+Amazon Managed Blockchain is a managed service to:
+• Join public blockchain networks
+• Or create your own scalable private network
+## AWS Glue
+- Managed extract, transform, and load (ETL) service
+- Useful to prepare and transform data for analytics
+- Fully serverless service
+- Glue Data Catalog: catalog of datasets
+- can be used by Athena, Redshift, EMR
+## DMS-Database Migration Service
+Quickly and securely migrate databases to AWS, resilient, self healing
+
+# ECS, Fargate, ECR, EKS, Batch, Lightsail
+- ECS - Launch Docker containers on AWS. You must provision & maintain the infrastructure (the EC2 instances)
+- Fargate -  Launch Docker containers on AWS. You do not provision the infrastructure (no EC2 instances to manage). Serverless offering
+- EKS - Allows you to launch managed Kubernetes clusters on AWS
+- Batch:
+  • No time limit
+  • Any runtime as long as it’s packaged as a Docker image
+  • Rely on EBS / instance store for disk space
+  • Relies on EC2 (can be managed by AWS)
+- Lightsail-predictable & low pricing for simple application & DB stacks
+  
 
 
 

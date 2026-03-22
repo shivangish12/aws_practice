@@ -157,6 +157,45 @@ Quickly and securely migrate databases to AWS, resilient, self healing
   • Rely on EBS / instance store for disk space
   • Relies on EC2 (can be managed by AWS)
 - Lightsail-predictable & low pricing for simple application & DB stacks
+
+# Deployment
+## CloudFormation
+## AWS Elastic Beanstalk
+Beanstalk = Platform as a Service (PaaS)
+Managed service 
+   • Instance configuration / OS is handled by Beanstalk 
+   • Deployment strategy is configurable but performed by Elastic Beanstalk 
+   • Capacity provisioning 
+   • Load balancing & auto-scaling 
+   • Application health-monitoring & responsiveness 
+Just the application code is the responsibility of the developer 
+Three architecture models: 
+   • Single Instance deployment: good for dev 
+   • LB + ASG: great for production or pre-production web applications 
+   • ASG only: great for non-web apps in production (workers, etc..)
+
+## AWS CodePlay
+• We want to deploy our application automatically
+• Works with EC2 Instances
+• Works with On-Premises Servers
+• Hybrid service
+• Servers / Instances must be provisioned and configured ahead of time with the CodeDeploy Agent
+
+## AWS CodeCommit
+A famous public offering is GitHub, AWS’ competing product is CodeCommit
+## AWS CodeBuild
+Compiles source code, run tests, and produces packages that are ready to be deployed (by CodeDeploy for example)
+## AWS CodePipeline
+Orchestrate the different steps to have the code automatically pushed to production
+## AWS CodeArtifact
+CodeArtifact is a secure, scalable, and cost-effective artifact management for software development
+Works with common dependency management tools such as Maven, Gradle, npm, yarn, twine, pip, and NuGet
+Developers and CodeBuild can then retrieve dependencies straight from CodeArtifact
+## AWS Systems Manager (SSM)
+Helps you manage your EC2 and On-Premises systems at scale
+Another Hybrid AWS service
+
+# Global Infrastructure
   
 
 

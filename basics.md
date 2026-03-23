@@ -228,7 +228,48 @@ There are two patterns of application communication - Synchronous and Asynchrono
 - CloudTrail - Provides governance, compliance and audit for your AWS Account
 -  Amazon CodeGuru - An ML-powered service for automated code reviews and application performance recommendations
 -  AWS Health Dashboard
-    
+
+# VPC
+# Security
+DDOS protection on AWS:
+- AWS Shield Standard: protects against DDOS attack for your website and applications, for all customers at no additional costs
+- AWS Shield Advanced: 24/7 premium DDoS protection
+- AWS WAF (Web Application Firewall): Filter specific requests based on rules. Layer 7 (HTTP)
+- AWS Network Firewall: Protect your entire Amazon VPC. From Layer 3 to Layer 7 protection
+- AWS Firewall Manager: Manage security rules in all accounts of an AWS Organization
+- CloudFront and Route 53:
+    - Availability protection using global edge network
+    - Combined with AWS Shield, provides attack mitigation at the edge
+- Penetration Testing
+- AWS KMS (Key Management Service) : AWS manages the encryption keys for us
+- CloudHSM :  KMS => AWS manages the software for encryption. CloudHSM => AWS provisions encryption hardware
+- Types of KMS Keys:
+    • Customer Managed Key:
+        Create, manage and used by the customer, can enable or disable
+        Possibility of rotation policy (new key generated every year, old key preserved)
+        Possibility to bring-your-own-key
+    • AWS Managed Key:
+        Created, managed and used on the customer’s behalf by AWS
+        Used by AWS services (aws/s3, aws/ebs, aws/redshift)
+    • AWS Owned Key:
+        Collection of CMKs that an AWS service owns and manages to use in multiple accounts
+        AWS can use those to protect resources in your account (but you can’t view the keys)
+    • CloudHSM Keys (custom keystore):
+         Keys generated from your own CloudHSM hardware device
+         Cryptographic operations are performed within the CloudHSM cluster
+
+  - AWS Certificate Manager (ACM)
+  - AWS Secrets Manager
+  - Amazon GuardDuty - Intelligent Threat discovery to protect your AWS Account 
+  - Amazon Inspector - Automated Security Assessments.  only for EC2 instances, Container Images & Lambda functions
+  - AWS Macie - Amazon Macie is a fully managed data security and data privacy service that uses machine learning and pattern matching to discover and protect your sensitive data in AWS.
+  - AWS Security Hub - Central security tool to manage security across several AWS accounts and automate security checks
+  - Amazon Detective - Amazon Detective analyzes, investigates, and quickly identifies the root cause of security issues or suspicious activities (using ML and graphs)
+  - AWS Abuse - Report suspected AWS resources used for abusive or illegal purposes
+
+
+# Machine Learning
+
 
 
 

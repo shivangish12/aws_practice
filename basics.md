@@ -196,7 +196,16 @@ Helps you manage your EC2 and On-Premises systems at scale
 Another Hybrid AWS service
 
 # Global Infrastructure
-  
+  Global Applications in AWS
+  - Global DNS: Route 53
+      - Routing Policies - Simple Routing Policy and Weighted Routing Policy, Latency Routing Policy and Failover Routing Policy
+  - Global Content Delivery Network (CDN): CloudFront - Caching
+  - S3 Transfer Acceleration
+  - AWS Global Accelerator - Improve global application availability and performance using the AWS global network. No caching.
+  - AWS Outposts - AWS Outposts are “server racks” that offers the same AWS infrastructure, services, APIs & tools to build your own applications on premises just as in the cloud.
+  - AWS Wavelength
+  - AWS Local Zones
+    
 
 
 

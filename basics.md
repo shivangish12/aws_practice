@@ -205,6 +205,29 @@ Another Hybrid AWS service
   - AWS Outposts - AWS Outposts are “server racks” that offers the same AWS infrastructure, services, APIs & tools to build your own applications on premises just as in the cloud.
   - AWS Wavelength
   - AWS Local Zones
+
+# Cloud Integration
+There are two patterns of application communication - Synchronous and Asynchronous
+- Amazon SQS:
+   - Fully managed service (~serverless), use to decouple applications
+   - Scales from 1 message per second to 10,000s per second
+   - Default retention of messages: 4 days, maximum of 14 days
+   - No limit to how many messages can be in the queue
+   - Messages are deleted after they’re read by consumers
+   - Low latency (<10 ms on publish and receive)
+   - Consumers share the work to read messages & scale horizontally
+- Amazon Kinesis Data Stream:
+   - Kinesis = real-time big data streaming
+   - Managed service to collect, process, and analyze real-time streaming data at any scale
+- Amazon SNS : Notification service in AWS
+- Amazon MQ : managed message broker for ActiveMQ and RabbitMQ in the cloud (MQTT, AMQP.. protocols)
+
+# Cloud Monitoring
+- Cloudwatch
+- EventBridge
+- CloudTrail - Provides governance, compliance and audit for your AWS Account
+-  Amazon CodeGuru - An ML-powered service for automated code reviews and application performance recommendations
+-  AWS Health Dashboard
     
 
 

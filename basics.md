@@ -269,7 +269,24 @@ DDOS protection on AWS:
 
 
 # Machine Learning
-
-
+- Rekognition :
+    • Find objects, people, text, scenes in images and videos using ML
+    • Facial analysis and facial search to do user verification, people counting
+    • Create a database of “familiar faces” or compare against celebrities
+- Amazon Transcribe
+   • Automatically convert speech to text
+   • Uses a deep learning process called automatic speech recognition (ASR) to convert speech to text quickly and accurately
+- Amazon Polly - Turn text into lifelike speech using deep learning
+- Amazon Translate -  Natural and accurate language translation
+- Amazon Comprehend
+    • For Natural Language Processing – NLP
+    • Fully managed and serverless service
+    • Uses machine learning to find insights and relationships in text
+- Amazon SageMaker AI -  Fully managed service for developers / data scientists to build ML models
+- Amazon Kendra -  Fully managed document search service powered by Machine Learning
+- Amazon Personalize - real-time personalized recommendations
+- Amazon Textract - Automatically extracts text, handwriting, and data from any scanned documents using AI and ML
+- Lex: build conversational bots – chatbots
+- Connect: cloud contact center
 
 

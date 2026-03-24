@@ -289,4 +289,22 @@ DDOS protection on AWS:
 - Lex: build conversational bots – chatbots
 - Connect: cloud contact center
 
+# Identity Section
+- AWS STS (SecurityToken Service) - Enables you to create temporary, limited- privileges credentials to access your AWS resources
+- Amazon Cognito - Identity for your Web and Mobile applications users (potentially millions)
+- Directory Services: integrate Microsoft Active Directory in AWS
+- IAM Identity Center: one login for multiple AWS accounts & applications
+
+# Other Services
+- Amazon WorkSpaces
+    -  Managed Desktop as a Service (DaaS) solution to easily provision Windows or Linux desktops
+    -  Great to eliminate management of on-premise VDI (Virtual Desktop Infrastructure
+- Amazon AppStream 2.0 - Desktop Application Streaming Service
+- AWS IoT Core
+- AWS AppSync
+- AWS Amplify - A set of tools and services that helps you develop and deploy scalable full stack web and mobile applications
+- AWS Infrastructure Composer
+- AWS Device Farm- Fully-managed service that tests your web and mobile apps against desktop browsers, real mobile devices, and tablets
+
+
 

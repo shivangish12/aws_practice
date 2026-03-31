@@ -307,4 +307,13 @@ DDOS protection on AWS:
 - AWS Device Farm- Fully-managed service that tests your web and mobile apps against desktop browsers, real mobile devices, and tablets
 
 
+## Points
+- Think resource performance monitoring, events, and alerts; think CloudWatch.
+- Think account-specific activity and audit; think CloudTrail.
+- Think resource-specific change history, audit, and compliance; think Config.
+
+- While the AWS Health - Service Health Dashboard displays the general status of AWS services;
+- the AWS Health - Your Account Health Dashboard gives you a personalized view of the performance and availability of the AWS services underlying your AWS resources.
+
+
 
